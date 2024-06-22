@@ -57,7 +57,7 @@ const deleteBannerById = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Banner is deleted successfully',
+    message: "Banner deleted Successfully",
     data: result && null,
   });
 });
