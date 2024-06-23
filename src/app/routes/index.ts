@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { UserRoutes } from '../modules/User/user.route';
 import { BannerRoutes } from '../modules/Banner/Banner.route';
 import { PackageRouter } from '../modules/Packages/Package.route';
+import { ThinksRoutes } from '../modules/thinks_to_do/thinks.route';
 
 type TModuleRoutes = {
   path: string;
@@ -23,6 +24,10 @@ const moduleRoutes: TModuleRoutes[] = [
   {
     path: '/packages',
     route: PackageRouter,
+  },
+  {
+    path: '/thinks',
+    route: ThinksRoutes,
   },
   
 ];
