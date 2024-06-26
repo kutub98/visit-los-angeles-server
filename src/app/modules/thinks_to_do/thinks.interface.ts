@@ -4,6 +4,7 @@ export interface ThinksToDo {
     location:string,
     phone_number:number,
     description:string,
+    sub_description:string,
     category: string,
     time_hour: string,
     metting_space:string

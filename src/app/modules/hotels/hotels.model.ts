@@ -16,7 +16,7 @@ const HotelSchema: Schema = new Schema({
     category: { type: String, required: true },
     time_hour: { type: String, required: true },
     meeting_space: { type: String, required: true },
-    additional_info: { type: [AdditionalInfoSchema], required: true }
+    additional_info: { type: [AdditionalInfoSchema] }
 });
 
 export const Hotel = mongoose.model<IHotel & Document>('Hotel', HotelSchema);
