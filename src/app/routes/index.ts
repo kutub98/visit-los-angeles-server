@@ -9,6 +9,7 @@ import { AuthRoutes } from '../modules/auth/auth.route';
 import { MenuRouter } from '../modules/menu/menu.route';
 import { QuataRouter } from '../modules/quata/quata.route';
 import { SliderRouter } from '../modules/slider/slider.route';
+import { VideoRouter } from '../modules/video_streming/video.route';
 
 type TModuleRoutes = {
   path: string;
@@ -58,6 +59,10 @@ const moduleRoutes: TModuleRoutes[] = [
   {
     path: '/slider',
     route: SliderRouter,
+  },
+  {
+    path: '/video',
+    route: VideoRouter,
   },
 ];
 
