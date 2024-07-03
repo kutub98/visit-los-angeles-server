@@ -6,6 +6,6 @@ import { userValidate } from '../User/user.validation';
 const router = Router();
 
 router.post('/register', userValidate.validateUser, authController.register);
-router.post('/login', userValidate.validateLogin, authController.login);
+router.post('/login', authController.login);
 
 export const AuthRoutes = router;
