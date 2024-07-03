@@ -48,16 +48,15 @@
 //   deleteUserById,
 // };
 
-
 // services/auth.service.ts
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { User } from './user.model';
 import { IUser } from './user.interface';
 
-const SECRET_KEY = 'your_secret_key'; // Replace with your actual secret key
+const SECRET_KEY = 'your_secret_key43jndcvndfgkjrut56vfghty6767dfds8'; // Replace with your actual secret key
 
- const createUser = async (userData: IUser) => {
+const createUser = async (userData: IUser) => {
   const hashedPassword = await bcrypt.hash(userData.password, 10);
   const newUser = new User({
     ...userData,
@@ -67,33 +66,37 @@ const SECRET_KEY = 'your_secret_key'; // Replace with your actual secret key
   return newUser;
 };
 
- const loginUser = async (username: string, password: string) => {
-  const user = await User.findOne({ username });
+
+const loginUser = async (email: string, password: string) => {
+  const user = await User.findOne({ email });
+  // console.log(user);
   if (!user) throw new Error('User not found');
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) throw new Error('Invalid credentials');
 
-  const token = jwt.sign({ id: user._id, role: user.role }, SECRET_KEY, { expiresIn: '1h' });
-  return token;
+  const token = jwt.sign({ id: user._id, role: user.role }, SECRET_KEY, {
+    expiresIn: '1h',
+  });
+  return { message: 'Login successful', token };
 };
 
- const getUserById = async (id: string) => {
+const getUserById = async (id: string) => {
   return User.findById(id);
 };
 
- const getAllUsers = async () => {
+const getAllUsers = async () => {
   return User.find();
 };
 
- const updateUser = async (id: string, updateData: Partial<IUser>) => {
+const updateUser = async (id: string, updateData: Partial<IUser>) => {
   if (updateData.password) {
     updateData.password = await bcrypt.hash(updateData.password, 10);
   }
   return User.findByIdAndUpdate(id, updateData, { new: true });
 };
 
- const deleteUser = async (id: string) => {
+const deleteUser = async (id: string) => {
   return User.findByIdAndDelete(id);
 };
 
@@ -103,5 +106,5 @@ export const UserService = {
   getAllUsers,
   updateUser,
   deleteUser,
-  loginUser
+  loginUser,
 };

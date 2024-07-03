@@ -102,6 +102,19 @@ function isErrorWithMessage(error: unknown): error is ErrorWithMessage {
   }
 };
 
+
+// const getAllUsers = catchAsync(async (req, res) => {
+//   const result = await UserService.getAllUsers(req.query);
+
+//   sendResponse(res, {
+//     statusCode: httpStatus.OK,
+//     success: true,
+//     message: 'Users are retrieved succesfully',
+//     meta: result.meta,
+//     data: result.data,
+//   });
+// });
+
  const getUsers = async (_req: Request, res: Response) => {
   try {
     const users = await UserService.getAllUsers();

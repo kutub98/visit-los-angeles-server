@@ -1,19 +1,8 @@
 // validations/user.validation.ts
 import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
+import { isErrorWithMessage } from '../../utils/Error';
 
-type ErrorWithMessage = {
-  message: string;
-};
-
-function isErrorWithMessage(error: unknown): error is ErrorWithMessage {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    'message' in error &&
-    typeof (error as Record<string, unknown>).message === 'string'
-  );
-}
 
 const userSchema = z.object({
   username: z.string().min(3),
@@ -32,7 +21,7 @@ const updateUserSchema = z.object({
 });
 
 const loginSchema = z.object({
-  username: z.string().min(3),
+  email: z.string().min(3),
   password: z.string().min(6),
 });
 
