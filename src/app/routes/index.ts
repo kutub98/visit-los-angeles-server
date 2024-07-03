@@ -6,6 +6,7 @@ import { ThinksRoutes } from '../modules/thinks_to_do/thinks.route';
 import { HotelsRoutes } from '../modules/hotels/hotels.route';
 import { EventRouter } from '../modules/events/event.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
+import { MenuRouter } from '../modules/menu/menu.route';
 
 type TModuleRoutes = {
   path: string;
@@ -22,6 +23,10 @@ const moduleRoutes: TModuleRoutes[] = [
   {
     path: '/auth',
     route: AuthRoutes,
+  },
+  {
+    path: '/menu',
+    route: MenuRouter,
   },
   {
     path: '/banner',
