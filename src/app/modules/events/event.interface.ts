@@ -4,8 +4,10 @@ export interface IAdditionalInfo {
 }
 
 export interface IEvents {
-    title: string;
-    image: string;
+    event_title: string;
+    event_description: string;
+    event_link: string;
+    event_image: string;
     location: string;
     phone_number: number;
     description: string;

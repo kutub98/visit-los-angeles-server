@@ -2,49 +2,52 @@
 import mongoose, { Schema } from 'mongoose';
 import { IMenu } from './menu.interface';
 
+const AdditionalInfoSchema: Schema = new Schema({
+  key: { type: String, required: true },
+  value: { type: String, required: true },
+});
 const menuSchema: Schema<IMenu> = new mongoose.Schema({
-  title: {
+  hadline: {
     type: String,
     required: true,
   },
-  location: {
+  hadline_image: {
     type: String,
-    required: true,
   },
-  description: {
+  short_headline: {
     type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  phone_number: {
-    type: Number,
   },
   category: {
     type: String,
-    enum: [
-      'thinks_to_do',
-      'eat_and_drinks',
-      'find_event',
-      'Itineraries',
-      'where_to_stay',
-      'celebrate_la_heritage',
-      'tourist_information',
-      'meetings',
-      'about_la_tourism',
-    ],
   },
   sub_category: {
     type: String,
   },
-  time_hour: {
+  category_description: {
     type: String,
+  },
+  category_image: {
+    type: String,
+  },
+  sub_category_image: {
+    type: String,
+  },
+  category_type: {
+    type: String,
+  },
+  date_and_time: {
+    type: String,
+  },
+  location: {
+    type: String,
+  },
+  phone_number: {
+    type: Number,
   },
   metting_space: {
     type: String,
   },
+  additional_info: { type: [AdditionalInfoSchema] },
 });
 
 export const Menu = mongoose.model<IMenu>('menu', menuSchema);
