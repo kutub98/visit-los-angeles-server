@@ -1,9 +1,8 @@
 // models/User.ts
 import mongoose, { Schema } from 'mongoose';
-import { ThinksToDo } from './thinks.interface';
-// import { IUser } from './user.interface';
+import { IMenu } from './menu.interface';
 
-const userSchema: Schema<ThinksToDo> = new mongoose.Schema({
+const menuSchema: Schema<IMenu> = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -16,10 +15,6 @@ const userSchema: Schema<ThinksToDo> = new mongoose.Schema({
     type: String,
     required: true,
   },
-  sub_description: {
-    type: String,
-    required: true,
-  },
   image: {
     type: String,
     required: true,
@@ -28,6 +23,20 @@ const userSchema: Schema<ThinksToDo> = new mongoose.Schema({
     type: Number,
   },
   category: {
+    type: String,
+    enum: [
+      'thinks_to_do',
+      'eat_and_drinks',
+      'find_event',
+      'Itineraries',
+      'where_to_stay',
+      'celebrate_la_heritage',
+      'tourist_information',
+      'meetings',
+      'about_la_tourism',
+    ],
+  },
+  sub_category: {
     type: String,
   },
   time_hour: {
@@ -38,4 +47,4 @@ const userSchema: Schema<ThinksToDo> = new mongoose.Schema({
   },
 });
 
-export const ThinsToDo = mongoose.model<ThinksToDo>('Thinks_to_do', userSchema);
+export const Menu = mongoose.model<IMenu>('menu', menuSchema);

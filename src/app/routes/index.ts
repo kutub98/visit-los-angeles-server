@@ -4,7 +4,8 @@ import { BannerRoutes } from '../modules/Banner/Banner.route';
 import { PackageRouter } from '../modules/Packages/Package.route';
 import { ThinksRoutes } from '../modules/thinks_to_do/thinks.route';
 import { HotelsRoutes } from '../modules/hotels/hotels.route';
-
+import { EventRouter } from '../modules/events/event.route';
+import { AuthRoutes } from '../modules/auth/auth.route';
 
 type TModuleRoutes = {
   path: string;
@@ -19,10 +20,14 @@ const moduleRoutes: TModuleRoutes[] = [
     route: UserRoutes,
   },
   {
+    path: '/auth',
+    route: AuthRoutes,
+  },
+  {
     path: '/banner',
     route: BannerRoutes,
   },
-  
+
   {
     path: '/packages',
     route: PackageRouter,
@@ -35,7 +40,10 @@ const moduleRoutes: TModuleRoutes[] = [
     path: '/hotels',
     route: HotelsRoutes,
   },
-  
+  {
+    path: '/events',
+    route: EventRouter,
+  },
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));

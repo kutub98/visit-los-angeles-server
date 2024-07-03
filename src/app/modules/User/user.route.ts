@@ -1,26 +1,43 @@
-import express from 'express';
-import validateRequest from '../../middlewares/validateRequest';
+// import express from 'express';
+// import validateRequest from '../../middlewares/validateRequest';
+// import { UserController } from './user.controller';
+
+// const router = express.Router();
+
+// router.post(
+//   '/',
+//   validateRequest(createUserValidationSchema),
+//   UserController.createUser,
+// );
+
+// router.get('/', UserController.getAllUsers);
+
+// router.get('/:id', UserController.findUserById);
+
+// router.patch(
+//   '/:id',
+//   validateRequest(updateUserValidationSchema),
+//   UserController.updateUserById,
+// );
+
+// router.delete('/:id', UserController.deleteUserById);
+
+// export const UserRoutes = router;
+
+// routes/user.routes.ts
+
+import { Router } from 'express';
 import { UserController } from './user.controller';
-import { createUserValidationSchema, updateUserValidationSchema } from './user.validation';
+import { userValidate } from './user.validation';
+const router = Router();
 
-const router = express.Router();
-
-router.post(
-  '/',
-  validateRequest(createUserValidationSchema),
-  UserController.createUser,
-);
-
-router.get('/', UserController.getAllUsers);
-
-router.get('/:id', UserController.findUserById);
-
-router.patch(
+router.get('/', UserController.getUsers);
+router.get('/:id', UserController.getUser);
+router.put(
   '/:id',
-  validateRequest(updateUserValidationSchema),
-  UserController.updateUserById,
+  userValidate.validateUpdateUser,
+  UserController.updateUserDetails,
 );
-
-router.delete('/:id', UserController.deleteUserById);
+router.delete('/:id', UserController.removeUser);
 
 export const UserRoutes = router;
