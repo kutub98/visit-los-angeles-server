@@ -9,18 +9,22 @@ const AdditionalInfoSchema: Schema = new Schema({
 });
 
 const EventsSchema: Schema = new Schema({
-    title: { type: String, required: true },
-    image: { type: String, required: true },
-    location: { type: String, required: true },
-    phone_number: { type: Number, required: true },
-    description: { type: String, required: true },
-    category: { type: String, required: true },
-    start_date: { type: String, required: true },
-    end_date: { type: String, required: true },
-    start_time: { type: String, required: true },
-    end_time: { type: String, required: true },
-    contact_info: { type: String, required: true },
+
+
+    event_title: { type: String, required: true },
+    event_description: { type: String, required: true },
+    event_link: { type: String, required: true },
+    event_image: { type: String, required: true },
+    location: { type: String},
+    phone_number: { type: Number},
+    category: { type: String},
+    start_date: { type: String},
+    end_date: { type: String},
+    start_time: { type: String},
+    end_time: { type: String},
+    contact_info: { type: String},
     additional_info: { type: [AdditionalInfoSchema] }
 });
 
 export const Event = mongoose.model<IEvents & Document>('events', EventsSchema);
+
