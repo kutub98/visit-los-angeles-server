@@ -7,14 +7,13 @@ const AdditionalInfoSchema: Schema = new Schema({
   value: { type: String, required: true },
 });
 const menuSchema: Schema<IMenu> = new mongoose.Schema({
-  hadline: {
-    type: String,
-    required: true,
-  },
-  hadline_image: {
+  headline: {
     type: String,
   },
-  short_headline: {
+  headline_image: {
+    type: String,
+  },
+  short_headline_description: {
     type: String,
   },
   category: {
@@ -24,6 +23,9 @@ const menuSchema: Schema<IMenu> = new mongoose.Schema({
     type: String,
   },
   category_description: {
+    type: String,
+  },
+  category_title: {
     type: String,
   },
   category_image: {

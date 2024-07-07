@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 import { IAd } from './ad.interface';
 
 const adSchema: Schema<IAd> = new mongoose.Schema({
-  ad_image: {
+  image: {
     type: String,
     required: true,
   },
