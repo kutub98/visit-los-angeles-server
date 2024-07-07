@@ -16,6 +16,10 @@ const userSchema: Schema<ThinksToDo> = new mongoose.Schema({
     type: String,
     required: true,
   },
+  sub_description: {
+    type: String,
+    required: true,
+  },
   image: {
     type: String,
     required: true,

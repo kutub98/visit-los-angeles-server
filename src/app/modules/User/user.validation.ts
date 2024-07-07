@@ -1,27 +1,72 @@
+// validations/user.validation.ts
+import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
+import { isErrorWithMessage } from '../../utils/Error';
 
-export const createUserValidationSchema = z.object({
-  body: z.object({
-    username: z.string(),
-    img: z.string(),
-    email: z.string().email(),
-    password: z.string(),
-    role: z.enum(['admin', 'general', 'vip', 'moderator']).optional(),
-  }),
+
+const userSchema = z.object({
+  username: z.string().min(3),
+  email: z.string().email(),
+  password: z.string().min(6),
+  img: z.string().url(),
+  role: z.enum(['admin', 'user']).optional(),
 });
 
-export const updateUserValidationSchema = z.object({
-  body: z.object({
-    username: z.string().optional(),
-    email: z.string().email().optional(),
-    password: z.string().optional(),
-    img: z.string().optional(),
-
-    role: z.enum(['admin', 'moderator', 'vip', 'general']).optional(),
-  }),
+const updateUserSchema = z.object({
+  username: z.string().min(3).optional(),
+  email: z.string().email().optional(),
+  password: z.string().min(6).optional(),
+  img: z.string().url().optional(),
+  role: z.enum(['admin', 'user']).optional(),
 });
 
-export const UserValidations = {
-  createUserValidationSchema,
-  updateUserValidationSchema,
+const loginSchema = z.object({
+  email: z.string().min(3),
+  password: z.string().min(6),
+});
+
+ const validateUser = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    userSchema.parse(req.body);
+    next();
+  } catch (error: unknown) {
+    if (isErrorWithMessage(error)) {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(400).json({ error: 'Unknown error' });
+    }
+  }
 };
+
+ const validateLogin = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    loginSchema.parse(req.body);
+    next();
+  } catch (error: unknown) {
+    if (isErrorWithMessage(error)) {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(400).json({ error: 'Unknown error' });
+    }
+  }
+};
+
+ const validateUpdateUser = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    updateUserSchema.parse(req.body);
+    next();
+  } catch (error: unknown) {
+    if (isErrorWithMessage(error)) {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(400).json({ error: 'Unknown error' });
+    }
+  }
+};
+
+
+export const userValidate = {
+  validateUser,
+  validateLogin,
+  validateUpdateUser
+}
