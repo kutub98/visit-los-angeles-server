@@ -3,12 +3,13 @@ export interface IAdditionalInfo {
   value: string;
 }
 export interface IMenu {
-  hadline: string;
-  hadline_image: string;
-  short_headline: string;
+  headline: string;
+  headline_image: string;
+  short_headline_description: string;
   category: string;
   sub_category: string;
   category_description: string;
+  category_title: string;
   category_image: string;
   sub_category_image: string;
   category_type: string;
@@ -27,7 +28,7 @@ export interface IMenu {
 // | 'thinks_to_do'
 // | 'eat_and_drinks'
 // | 'find_event'
-// | 'Itineraries'
+// | 'itineraries'
 // | 'where_to_stay'
 // | 'celebrate_la_heritage'
 // | 'tourist_information'
